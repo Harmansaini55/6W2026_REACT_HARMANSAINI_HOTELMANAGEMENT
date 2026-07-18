@@ -125,7 +125,7 @@ export default function Header() {
 
 
                 <li>
-                  <Link className="dropdown-item" to="/admin/checkout">
+                  <Link className="dropdown-item" to="/admin/checkinout">
                     Check-In-Out Customers
                   </Link>
                 </li>

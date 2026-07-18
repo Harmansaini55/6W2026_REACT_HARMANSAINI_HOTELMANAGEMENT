@@ -17,8 +17,7 @@ import CustomerList from "./pages/admin Panel/customers/CustomerList";
 import EditCustomer from "./pages/admin Panel/customers/EditCustomer";
 import CustomerDetails from "./pages/admin Panel/customers/CustomerDetails";
 import BookingList from "./pages/admin Panel/bookings/BookingList";
-import CheckInCustomers from "./pages/admin Panel/bookings/CheckInCustomers";
-import CheckOutCustomers from "./pages/admin Panel/bookings/CheckOutCustomers";
+import CheckInOutCustomers from "./pages/admin Panel/bookings/CheckInOutCustomers";
 import BookingsDetails from "./pages/admin Panel/bookings/BookingsDetails";
 import EditBooking from "./pages/admin Panel/bookings/EditBooking";
 import PaymentDetails from "./pages/admin Panel/payments/PaymentDetails";
@@ -118,8 +117,7 @@ function App() {
       <Route path="edit-customer/:id" element={<EditCustomer />} />
       <Route path="customer-details/:id" element={<CustomerDetails />} />
       <Route path="booking-list" element={<BookingList />} />
-      <Route path="checkin" element={<CheckInCustomers />} />
-      <Route path="checkout" element={<CheckOutCustomers />} />
+      <Route path="checkinout" element={<CheckInOutCustomers />} />
       <Route path="bookings-details/:id" element={<BookingsDetails />} />
       <Route path="edit-booking/:id" element={<EditBooking />} />
       <Route path="payment-details/:id" element={<PaymentDetails />} />
