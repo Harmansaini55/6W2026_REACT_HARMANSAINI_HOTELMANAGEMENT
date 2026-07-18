@@ -46,7 +46,7 @@ loadOffers();
                 </h2>
 
                 <p className="text-muted">
-                    Enjoy our latest hotel deals and discounts abn
+                    Enjoy our latest hotel deals and discounts
                 </p>
 
             </div>
