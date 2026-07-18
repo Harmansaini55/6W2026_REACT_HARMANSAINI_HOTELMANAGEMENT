@@ -8,23 +8,23 @@ export default function CustomerDetails() {
 
   const navigate = useNavigate();
 
- const [customer, setCustomer] = useState(null);
+  const [customer, setCustomer] = useState(null);
 
 
-useEffect(() => {
+  useEffect(() => {
 
-  getCustomer();
+    getCustomer();
 
-}, []);
+  }, []);
 
 
-const getCustomer = async () => {
+  const getCustomer = async () => {
 
-  const data = await CustomerService.getCustomerById(id);
+    const data = await CustomerService.getCustomerById(id);
 
-  setCustomer(data);
+    setCustomer(data);
 
-};
+  };
 
   if (!customer) {
 
@@ -61,26 +61,25 @@ const getCustomer = async () => {
 
         <div className="card-body">
 
-          <div className="text-center mb-4">
-
-            <img
-              src={customer.image}
-              alt="Customer"
-              className="rounded-circle shadow"
-              width="180"
-              height="180"
-              style={{ objectFit: "cover" }}
-            />
-
-          </div>
-
+          {customer.image && (
+            <div className="text-center mb-4">
+              <img
+                src={customer.image}
+                alt="Customer"
+                className="rounded-circle shadow"
+                width="180"
+                height="180"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          )}
           <table className="table table-bordered">
 
             <tbody>
 
               <tr>
                 <th width="30%">Full Name</th>
-                <td>{customer.fullName}</td>
+                <td>{customer.name}</td>
               </tr>
 
               <tr>
@@ -99,47 +98,60 @@ const getCustomer = async () => {
               </tr>
 
               <tr>
-                <th>Date of Birth</th>
-                <td>{customer.dob}</td>
-              </tr>
-
-              <tr>
                 <th>City</th>
                 <td>{customer.city}</td>
               </tr>
 
               <tr>
-                <th>Address</th>
-                <td>{customer.address}</td>
+                <th>Room Number</th>
+                <td>{customer.roomNumber}</td>
               </tr>
 
               <tr>
-                <th>ID Proof</th>
-                <td>{customer.idProof}</td>
+                <th>Room Type</th>
+                <td>{customer.roomType}</td>
               </tr>
 
               <tr>
-                <th>ID Proof Number</th>
-                <td>{customer.idNumber}</td>
+                <th>Check In</th>
+                <td>{customer.checkIn}</td>
+              </tr>
+
+              <tr>
+                <th>Check Out</th>
+                <td>{customer.checkOut}</td>
+              </tr>
+
+              <tr>
+                <th>Adults</th>
+                <td>{customer.adults}</td>
+              </tr>
+
+              <tr>
+                <th>Children</th>
+                <td>{customer.children}</td>
+              </tr>
+
+              <tr>
+                <th>Payment Method</th>
+                <td>{customer.paymentMethod}</td>
+              </tr>
+
+              <tr>
+                <th>Special Request</th>
+                <td>{customer.specialRequest}</td>
               </tr>
 
               <tr>
                 <th>Status</th>
                 <td>
-                  <span
-                    className={
-                      customer.status === "Active"
-                        ? "badge bg-success"
-                        : "badge bg-danger"
-                    }
-                  >
+                  <span className="badge bg-success">
                     {customer.status}
                   </span>
                 </td>
               </tr>
 
             </tbody>
-
           </table>
 
           <div className="text-center mt-4">

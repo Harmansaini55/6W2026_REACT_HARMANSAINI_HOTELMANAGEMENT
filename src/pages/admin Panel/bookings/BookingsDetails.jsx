@@ -5,26 +5,26 @@ import { useParams } from "react-router-dom";
 function BookingDetails() {
 
         const { id } = useParams();
-    const [bookings, setBookings] = useState([]);
+    const [booking, setBooking] = useState(null);
 
 
 
     useEffect(() => {
 
-        loadBookings();
+        loadBooking();
 
     }, []);
 
 
 
-    const loadBookings = async () => {
+    const loadBooking= async () => {
 
         try {
 
-            const data = await BookingService.getAllBookings();
+            const data = await BookingService.getBookingById();
              console.log("Booking Details:", data);
 
-               console.log(data);
+             
                setBooking(data);
 
             

@@ -6,7 +6,7 @@ import RoomService from "../../../services/RoomService";
 import PaymentService from "../../../services/PaymentService";
 import { db } from "../../../firebase/FirebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
-
+import CustomerService from "../../../services/CustomerService";
 export default function BookRoom() {
 
     const navigate = useNavigate();
@@ -69,48 +69,8 @@ export default function BookRoom() {
 
     };
 
+       
 
-    const handleBooking = async () => {
-
-        const bookingData = {
-            customerName: customerName,
-            email: email,
-            mobile: mobile,
-
-            roomId: room.id,
-            roomNumber: room.roomNumber,
-            roomType: room.roomType,
-
-            checkInDate: checkInDate,
-            checkOutDate: checkOutDate,
-
-            status: "Booked",
-
-            createdAt: new Date()
-        };
-
-
-        try {
-
-
-            await addDoc(collection(db, "bookings"), bookingData);
-
-            await addDoc(collection(db, "customers"), {
-                name: bookingData.customerName,
-                email: bookingData.email,
-                mobile: bookingData.mobile,
-                roomNumber: room.roomNumber,
-                roomType: room.roomType,
-            });
-
-
-            alert("Room Booked Successfully");
-
-        } catch (error) {
-            console.log(error);
-        }
-
-    };
 
     const handleSubmit = async (e) => {
 
@@ -129,7 +89,7 @@ export default function BookRoom() {
         }
 
         const existingBookings = await BookingService.getAllBookings();
-
+        
         const alreadyBooked = existingBookings.find(
             (item) =>
                 item.roomId === id &&
@@ -157,7 +117,7 @@ export default function BookRoom() {
             category: room.category,
 
             price: room.price,
-               status: "Booked",
+            status: "Booked",
             bookingId: Date.now().toString(),
 
             createdAt: new Date().toISOString()
@@ -185,7 +145,37 @@ export default function BookRoom() {
         };
         console.log(newBooking);
         await BookingService.addBooking(newBooking);
+         await CustomerService.addCustomer({
 
+    name: bookingData.customerName,
+
+    email: bookingData.email,
+
+    mobile: bookingData.mobile,
+
+    gender: bookingData.gender,
+
+    city: bookingData.city,
+
+    status: "Booked",
+
+    roomNumber: room.roomNumber,
+
+    roomType: room.roomType,
+
+    checkIn: bookingData.checkIn,
+
+    checkOut: bookingData.checkOut,
+
+    adults: bookingData.adults,
+
+    children: bookingData.children,
+
+    paymentMethod: bookingData.paymentMethod,
+
+    specialRequest: bookingData.specialRequest
+
+});
         await PaymentService.addPayment(newPayment);
 
         await RoomService.updateRoom(room.id, {
