@@ -75,7 +75,7 @@ const handleCustomerChange = (e) => {
 
         });
 
-    }
+    
 
 
 
@@ -125,7 +125,10 @@ const handleCustomerChange = (e) => {
 
             };
 
-            await BookingService.addBooking(newBooking);
+          await BookingService.updateStatus(
+    bookingData.bookingId,
+    "Checked In"
+);
 
             const newPayment = {
 
