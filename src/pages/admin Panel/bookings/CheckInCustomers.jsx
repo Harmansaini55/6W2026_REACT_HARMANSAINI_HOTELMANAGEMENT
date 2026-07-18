@@ -7,7 +7,7 @@ import CustomerService from "../../../services/CustomerService";
 export default function CheckInCustomer() {
 
     const navigate = useNavigate();
-    const [customers, setCustomers] = useState([]);
+    const [bookings, setBookings] = useState([]);
 
     const [bookingData, setBookingData] = useState({
 
@@ -35,7 +35,8 @@ export default function CheckInCustomer() {
 
     });
     useEffect(() => {
-        loadCustomers();
+        loadBookings();
+
     }, []);
 
     const loadCustomers = async () => {
@@ -44,18 +45,39 @@ export default function CheckInCustomer() {
     };
 const handleCustomerChange = (e) => {
 
-    const selectedCustomer = customers.find(
-        (customer) => customer.fullName === e.target.value
+    const selectedBooking = bookings.find(
+        booking => booking.customerName === e.target.value
     );
 
-    if (selectedCustomer) {
+    if (selectedBooking) {
 
         setBookingData({
+
             ...bookingData,
-            customerName: selectedCustomer.fullName,
-            mobile: selectedCustomer.mobile,
-            roomNumber: selectedCustomer.roomNumber
+
+            bookingId: selectedBooking.id,
+
+            customerName: selectedBooking.customerName,
+
+            mobile: selectedBooking.mobile,
+
+            roomNumber: selectedBooking.roomNumber,
+
+            roomType: selectedBooking.roomType,
+
+            checkInDate: selectedBooking.checkIn,
+
+            checkOutDate: selectedBooking.checkOut,
+
+            guests: selectedBooking.adults,
+
+            totalAmount: selectedBooking.price
+
         });
+
+    }
+
+
 
     } else {
 
@@ -214,9 +236,9 @@ const handleCustomerChange = (e) => {
                                 >
                                     <option value="" disabled hidden>Select Customer</option>
 
-                                    {customers.map((customer) => (
-                                        <option key={customer.id} value={customer.fullName}>
-                                            {customer.fullName}
+                                    {bookings.map((booking) => (
+                                        <option key={customer.id} value={booking.customerName}>
+                                            {booking.customerName}
                                         </option>
                                     ))}
                                 </select>

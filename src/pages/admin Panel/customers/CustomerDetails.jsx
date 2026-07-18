@@ -21,7 +21,7 @@ export default function CustomerDetails() {
   const getCustomer = async () => {
 
     const data = await CustomerService.getCustomerById(id);
-
+       console.log(data);
     setCustomer(data);
 
   };
@@ -79,7 +79,7 @@ export default function CustomerDetails() {
 
               <tr>
                 <th width="30%">Full Name</th>
-                <td>{customer.name}</td>
+                <td>{customer.customerName}</td>
               </tr>
 
               <tr>

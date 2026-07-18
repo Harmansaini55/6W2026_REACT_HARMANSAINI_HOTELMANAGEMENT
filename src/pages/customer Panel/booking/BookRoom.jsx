@@ -69,7 +69,7 @@ export default function BookRoom() {
 
     };
 
-       
+
 
 
     const handleSubmit = async (e) => {
@@ -89,7 +89,7 @@ export default function BookRoom() {
         }
 
         const existingBookings = await BookingService.getAllBookings();
-        
+
         const alreadyBooked = existingBookings.find(
             (item) =>
                 item.roomId === id &&
@@ -143,39 +143,41 @@ export default function BookRoom() {
             paymentStatus: "Paid"
 
         };
-        console.log(newBooking);
+
         await BookingService.addBooking(newBooking);
-         await CustomerService.addCustomer({
+        console.log("Saving Customer...");
+        await CustomerService.addCustomer({
+        
+            name: bookingData.customerName,
 
-    name: bookingData.customerName,
+            email: bookingData.email,
 
-    email: bookingData.email,
+            mobile: bookingData.mobile,
 
-    mobile: bookingData.mobile,
+            gender: bookingData.gender,
 
-    gender: bookingData.gender,
+            city: bookingData.city,
 
-    city: bookingData.city,
+            status: "Booked",
 
-    status: "Booked",
+            roomNumber: room.roomNumber,
 
-    roomNumber: room.roomNumber,
+            roomType: room.roomType,
 
-    roomType: room.roomType,
+            checkIn: bookingData.checkIn,
 
-    checkIn: bookingData.checkIn,
+            checkOut: bookingData.checkOut,
 
-    checkOut: bookingData.checkOut,
+            adults: bookingData.adults,
 
-    adults: bookingData.adults,
+            children: bookingData.children,
 
-    children: bookingData.children,
+            paymentMethod: bookingData.paymentMethod,
 
-    paymentMethod: bookingData.paymentMethod,
+            specialRequest: bookingData.specialRequest
 
-    specialRequest: bookingData.specialRequest
-
-});
+        });
+        console.log("Customer Saved");
         await PaymentService.addPayment(newPayment);
 
         await RoomService.updateRoom(room.id, {

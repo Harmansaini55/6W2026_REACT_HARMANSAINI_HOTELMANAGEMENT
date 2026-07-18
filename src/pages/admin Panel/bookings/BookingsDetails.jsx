@@ -21,7 +21,7 @@ function BookingDetails() {
 
         try {
 
-            const data = await BookingService.getBookingById();
+            const data = await BookingService.getBookingById(id);
              console.log("Booking Details:", data);
 
              
@@ -57,8 +57,8 @@ function BookingDetails() {
 
             alert("Customer Checkout Successfully");
 
-            loadBookings();
-
+            loadBooking();
+              
         }
         catch (error) {
 

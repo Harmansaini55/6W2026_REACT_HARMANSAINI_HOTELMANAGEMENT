@@ -6,51 +6,51 @@ export default function BookingList() {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
 
- useEffect(() => {
+  useEffect(() => {
 
     loadBookings();
 
-}, []);
+  }, []);
 
-const loadBookings = async () => {
+  const loadBookings = async () => {
 
     try {
 
-        const data = await BookingService.getAllBookings();
+      const data = await BookingService.getAllBookings();
 
-        setBookings(data);
+      setBookings(data);
 
     } catch (error) {
 
-        alert(error.message);
+      alert(error.message);
 
     }
 
-};
+  };
 
- const handleDelete = async (id) => {
+  const handleDelete = async (id) => {
 
     const confirmDelete = window.confirm(
-        "Are you sure you want to delete this booking?"
+      "Are you sure you want to delete this booking?"
     );
 
     if (!confirmDelete) return;
 
     try {
 
-        await BookingService.deleteBooking(id);
+      await BookingService.deleteBooking(id);
 
-        alert("Booking Deleted Successfully");
+      alert("Booking Deleted Successfully");
 
-        loadBookings();
+      loadBookings();
 
     } catch (error) {
 
-        alert(error.message);
+      alert(error.message);
 
     }
 
-};
+  };
 
   return (
     <div className="container-fluid py-4">
@@ -60,12 +60,7 @@ const loadBookings = async () => {
         <h2 className="fw-bold text-dark">
           🏨  Bookings-List
         </h2>
-<button
-  className="btn btn-dark"
-  onClick={() => navigate("/admin/checkin")}
->
-  + Add Booking
-</button>
+      
       </div>
 
       {/* Card */}
@@ -97,25 +92,16 @@ const loadBookings = async () => {
               <thead className="table-dark">
 
                 <tr>
-
                   <th>#</th>
-
                   <th>Booking ID</th>
-
                   <th>Customer Name</th>
-
                   <th>Room</th>
-
-                 
-
+                  <th>Check In</th>
+                  <th>Check Out</th>
                   <th>Guests</th>
-
-                  <th>Status</th>
-
                   <th>Total</th>
-
+                  <th>Status</th>
                   <th>Action</th>
-
                 </tr>
 
               </thead>
@@ -125,12 +111,28 @@ const loadBookings = async () => {
                 {bookings.map((booking, index) => (
                   <tr key={booking.id}>
                     <td>{index + 1}</td>
-                    <td>BK{booking.id}</td>
+
+                    <td>{booking.bookingId}</td>
+
                     <td>{booking.customerName}</td>
+
                     <td>{booking.roomNumber}</td>
-                    <td>{booking.guests}</td>
-                    <td>{booking.status}</td>
-                    <td>₹{booking.totalAmount}</td>
+
+                    <td>{booking.checkIn}</td>
+
+                    <td>{booking.checkOut}</td>
+
+                    <td>
+                      {booking.adults} Adult
+                    </td>
+
+                    <td>₹{booking.price}</td>
+
+                    <td>
+                      <span className="badge bg-success">
+                        {booking.status}
+                      </span>
+                    </td>
                     <td>
                       <button
                         className="btn btn-sm btn-info me-2"
@@ -165,6 +167,6 @@ const loadBookings = async () => {
 
       </div>
 
-    </div>
+    </div >
   );
 }
