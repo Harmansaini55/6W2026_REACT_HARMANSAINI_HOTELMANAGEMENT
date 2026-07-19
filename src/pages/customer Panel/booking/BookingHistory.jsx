@@ -6,19 +6,19 @@ export default function BookingHistory() {
   const [bookings, setBookings] = useState([]);
 
 
- useEffect(() => {
+  useEffect(() => {
 
-  const fetchBookings = async () => {
+    const fetchBookings = async () => {
 
-    const data = await BookingService.getAllBookings();
+      const data = await BookingService.getAllBookings();
 
-    setBookings(data);
+      setBookings(data);
 
-  };
+    };
 
-  fetchBookings();
+    fetchBookings();
 
-}, []);
+  }, []);
 
 
   return (
@@ -53,7 +53,7 @@ export default function BookingHistory() {
                 <tr>
 
                   <th>S.No</th>
-                  <th>Booking ID</th>
+                  <th>Booking Date</th>
                   <th>Room No</th>
                   <th>Room Type</th>
                   <th>Check In</th>
@@ -82,9 +82,10 @@ export default function BookingHistory() {
 
 
                       <td>
-                        {booking.bookingId}
+                        {booking.createdAt
+                          ? new Date(booking.createdAt).toLocaleDateString()
+                          : "-"}
                       </td>
-
 
                       <td>
                         {booking.roomNumber}
@@ -114,11 +115,10 @@ export default function BookingHistory() {
                       <td>
 
                         <span
-                          className={`badge ${
-                            booking.status === "Cancelled"
-                            ? "bg-danger"
-                            : "bg-success"
-                          }`}
+                          className={`badge ${booking.status === "Cancelled"
+                              ? "bg-danger"
+                              : "bg-success"
+                            }`}
                         >
 
                           {booking.status}

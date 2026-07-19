@@ -54,8 +54,8 @@ export default function PaymentHistory() {
 
                   <th>S.No</th>
                    <th>CustomerName</th>
-                  <th>Payment ID</th>
-                  <th>Booking ID</th>
+                  <th>Payment Status</th>
+                  <th>Booking Date</th>
                   <th>Room No</th>
                   <th>Room Type</th>
                   <th>Amount</th>
@@ -92,12 +92,12 @@ export default function PaymentHistory() {
 
 
                       <td>
-                        {payment.paymentId}
+                        {payment.paymentStatus}
                       </td>
 
 
                       <td>
-                        {payment.bookingId}
+                        {payment.paymentDate}
                       </td>
 
 
