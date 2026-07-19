@@ -4,7 +4,6 @@ class UserModel {
     name = "";
     email = "";
     mobile = "";
-    address = "";
     userType = 2; // Customer
 
 }

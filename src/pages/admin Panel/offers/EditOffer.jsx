@@ -106,6 +106,7 @@ const loadOffer = async()=>{
                   <option>Family Package</option>
                   <option>Honeymoon Package</option>
                   <option>New Year Offer</option>
+
                 </select>
 
               </div>
@@ -118,12 +119,14 @@ const loadOffer = async()=>{
                   name="offerType"
                   value={offerData.offerType}
                   onChange={handleChange}
-                >
-                  <option>Percentage Discount</option>
-                  <option>Flat Discount</option>
-                  <option>Free Breakfast</option>
-                  <option>Free Spa</option>
-                  <option>Free Airport Pickup</option>
+                ><option>Seasonal</option>
+                  <option>Weekend</option>
+                  <option>Festival</option>
+                  <option>Couple</option>
+                  <option>Booking</option> 
+                  <option>Corporate</option>
+                   <option>Family</option>
+                    <option>Holiday</option>
                 </select>
 
               </div>

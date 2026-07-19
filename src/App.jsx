@@ -49,6 +49,8 @@ import PaymentHistory from "./pages/customer Panel/payments/PaymentHistory";
 import RequestService from "./pages/customer Panel/services/RequestService";
 import Offers from "./pages/customer Panel/offers/Offers";
 import SubmitFeedback from "./pages/customer Panel/feedback/SubmitFeedback";
+import MyProfile from "./pages/customer Panel/profile/MyProfile";
+import EditProfile from "./pages/customer Panel/profile/EditProfile";
 
 
 function ProtectedRoute({ children, type }) {
@@ -150,6 +152,9 @@ function App() {
           <Route path="request-hotel-services" element={<RequestService/>}/>
           <Route path="offers" element={<Offers/>}/>
           <Route path="feedback" element={<SubmitFeedback/>}/>
+          <Route path="my-profile" element={<MyProfile />} />
+          <Route path="edit-profile" element={<EditProfile />}/>
+
         </Route>
      </Routes>
       <ToastContainer />

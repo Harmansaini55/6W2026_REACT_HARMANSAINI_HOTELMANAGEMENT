@@ -116,11 +116,16 @@ export default function AddOffer() {
                   onChange={handleChange}
                 >
                   <option value="" disabled hidden>Select Type</option>
-                  <option>Percentage Discount</option>
-                  <option>Flat Discount</option>
-                  <option>Free Breakfast</option>
-                  <option>Free Spa</option>
-                  <option>Free Airport Pickup</option>
+                  <option>Seasonal</option>
+                  <option>Weekend</option>
+                  <option>Festival</option>
+                  <option>Couple</option>
+                  <option>Booking</option> 
+                  <option>Corporate</option>
+                   <option>Family</option>
+                    <option>Holiday</option>
+
+
                 </select>
 
               </div>

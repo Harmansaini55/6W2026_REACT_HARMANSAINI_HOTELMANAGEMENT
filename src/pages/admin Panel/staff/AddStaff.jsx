@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StaffService from "../../../services/StaffService";
 import StaffModel from "../../../models/StaffModel";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../../../firebase/FirebaseConfig";
 
 export default function AddStaff() {
 
@@ -22,7 +20,7 @@ export default function AddStaff() {
     salary: "",
     shift: "",
     status: "Active",
-    image: ""
+    
   });
 
 
@@ -36,59 +34,48 @@ export default function AddStaff() {
     });
 
   };
- const handleImageChange = (e) => {
+const handleImageChange = (e) => {
 
   const file = e.target.files[0];
 
-  setStaffData({
-    ...staffData,
-    image:file
-  });
+  if (file) {
 
-};
+    const reader = new FileReader();
 
+    reader.onload = () => {
 
+      setStaffData({
+        ...staffData,
+        image: reader.result
+      });
 
-const handleSave = async (e) => {
+    };
 
-  e.preventDefault();
-
-  let imageUrl = "";
-
-  if(staffData.image){
-
-    const imageRef = ref(
-      storage,
-      `staffImages/${staffData.image.name}`
-    );
-
-
-    await uploadBytes(
-      imageRef,
-      staffData.image
-    );
-
-
-    imageUrl = await getDownloadURL(imageRef);
+    reader.readAsDataURL(file);
 
   }
 
+};
 
-  const newStaff = {
+     const handleSave = async (e) => {
 
-    ...staffData,
-    image:imageUrl
+  e.preventDefault();
 
-  };
+  try {
 
+    await StaffService.addStaff(staffData);
 
-  await StaffService.addStaff(newStaff);
+    alert("Staff Added Successfully");
 
+    navigate("/admin/staff-list");
 
-  alert("Staff Added Successfully");
+  } catch (error) {
 
+    console.log(error);
 
-  navigate("/admin/staff-list");
+    alert(error.message);
+
+  }
 
 };
   const handleReset = () => {

@@ -13,12 +13,42 @@ import {
   doc,
   getDoc,
   setDoc,
+  updateDoc
 } from "firebase/firestore";
 
 const dbPath = "users";
 
 class UserService {
 
+  // Update User Profile
+  async updateProfile(profile) {
+    console.log("Profile Data:", profile);
+    const userRef = doc(
+      db,
+      dbPath,
+      profile.id
+    );
+
+
+    await updateDoc(userRef, {
+
+      name: profile.name,
+      email: profile.email,
+      mobile: profile.mobile,
+      address: profile.address,
+      city: profile.city,
+      state: profile.state,
+      state:profile.dateOfBirth,
+      state:profile.age,
+      pincode: profile.pincode,
+      profileImage: profile.profileImage,
+
+    });
+
+
+    return true;
+
+  }
   // Customer Register
   async register(data) {
 

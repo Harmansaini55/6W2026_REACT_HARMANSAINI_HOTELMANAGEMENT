@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import BookingService from "../../../services/BookingService";
+import RoomService from "../../../services/RoomService";
 
 export default function BookingStatus() {
 
@@ -24,36 +25,47 @@ useEffect(() => {
 
   const handleCancel = async (bookingId) => {
 
-    const confirmCancel = window.confirm(
-      "Are you sure you want to cancel this booking?"
+  const confirmCancel = window.confirm(
+    "Are you sure you want to cancel this booking?"
+  );
+
+  if (confirmCancel) {
+
+   
+    const selectedBooking = bookings.find(
+      (item) => item.bookingId === bookingId
     );
 
+   
+    await BookingService.updateStatus(
+      selectedBooking.id,
+      "Cancelled"
+    );
 
-    if(confirmCancel){
+    // Room Status Update
+    const room = await RoomService.getRoomById(
+      selectedBooking.roomId
+    );
 
-      const updatedBookings = bookings.map((booking) =>
-        booking.bookingId === bookingId
-          ? {
-              ...booking,
-              status: "Cancelled"
-            }
-          : booking
-      );
+    await RoomService.updateRoom(room.id, {
+      ...room,
+      status: "Available"
+    });
 
+    // UI Update
+    const updatedBookings = bookings.map((booking) =>
+      booking.bookingId === bookingId
+        ? { ...booking, status: "Cancelled" }
+        : booking
+    );
 
-      setBookings(updatedBookings);
+    setBookings(updatedBookings);
 
+    alert("Booking Cancelled Successfully");
 
-     await BookingService.updateStatus(
-  booking.id,
-  "Cancelled"
-);
+  }
 
-      alert("Booking Cancelled Successfully");
-
-    }
-
-  };
+};
 
 
 

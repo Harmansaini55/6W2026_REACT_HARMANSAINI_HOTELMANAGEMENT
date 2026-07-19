@@ -19,7 +19,9 @@ const loadRooms = async () => {
     try {
 
         const data = await RoomService.getAllRooms();
-
+           const sortedRooms = data.sort(
+    (a,b) => Number(a.roomNumber) - Number(b.roomNumber)
+);
         setRooms(data);
 
     }

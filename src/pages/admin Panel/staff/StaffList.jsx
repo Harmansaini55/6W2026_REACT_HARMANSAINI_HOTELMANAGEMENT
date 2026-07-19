@@ -1,43 +1,43 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import StaffService from "../../../services/StaffService";
 
 export default function StaffList() {
-   const navigate=useNavigate();
+  const navigate = useNavigate();
 
- const [staffList, setStaffList] = useState([]);
-
-
-useEffect(() => {
-
-  loadStaff();
-
-}, []);
+  const [staffList, setStaffList] = useState([]);
 
 
-
-const loadStaff = async () => {
-
-  const data = await StaffService.getAllStaff();
-
-  setStaffList(data);
-
-};
-
- const handleDelete = async (id) => {
-
-  if(window.confirm("Are you sure you want to delete this staff?")){
-
-
-    await StaffService.deleteStaff(id);
-
+  useEffect(() => {
 
     loadStaff();
 
+  }, []);
 
-  }
 
-};
+
+  const loadStaff = async () => {
+
+    const data = await StaffService.getAllStaff();
+
+    setStaffList(data);
+
+  };
+
+  const handleDelete = async (id) => {
+
+    if (window.confirm("Are you sure you want to delete this staff?")) {
+
+
+      await StaffService.deleteStaff(id);
+
+
+      loadStaff();
+
+
+    }
+
+  };
 
 
   return (
@@ -49,7 +49,7 @@ const loadStaff = async () => {
           <h3>Staff List</h3>
 
           <button className="btn btn-dark"
-          onClick={() => navigate("/admin/add-staff")}
+            onClick={() => navigate("/admin/add-staff")}
           >
             + Add Staff
           </button>
@@ -63,7 +63,9 @@ const loadStaff = async () => {
             <thead className="table-light">
 
               <tr>
+                
                 <th>ID</th>
+                <th>Photo</th>
                 <th>Name</th>
                 <th>Department</th>
                 <th>Designation</th>
@@ -79,13 +81,25 @@ const loadStaff = async () => {
             <tbody>
 
               {
-                staffList.map((staff)=>(
-                  
+
+                staffList.map((staff) => (
+
                   <tr key={staff.id}>
 
                     <td>{staff.id}</td>
 
-                   
+                    <td>
+                      <img
+                        src={staff.image}
+                        alt="Staff"
+                        style={{
+                          width: "60px",
+                          height: "60px",
+                          borderRadius: "50%",
+                          objectFit: "cover"
+                        }}
+                      />
+                    </td>
 
                     <td>{staff.name}</td>
 
@@ -104,26 +118,26 @@ const loadStaff = async () => {
                     </td>
 
 
-                    <td>
+                    <td style={{ whiteSpace: "nowrap" }}>
 
-                      <button className="btn btn-info btn-sm me-2"
-                       onClick={() => navigate(`/admin/staff-details/${staff.id}`)}
-                       >
+                      <button className="btn btn-info btn-sm me-2 ms-0"
+                        onClick={() => navigate(`/admin/staff-details/${staff.id}`)}
+                      >
                         View
                       </button>
 
 
-                     <button
-                        className="btn btn-warning btn-sm me-2"
+                      <button
+                        className="btn btn-warning btn-sm me-2 ms-0"
                         onClick={() => navigate(`/admin/edit-staff/${staff.id}`)}
-                       >
-                         Edit
-                         </button>
+                      >
+                        Edit
+                      </button>
 
 
                       <button
-                        className="btn btn-sm btn-danger"
-                        onClick={()=>handleDelete(staff.id)}
+                        className="btn btn-sm btn-danger "
+                        onClick={() => handleDelete(staff.id)}
                       >
                         Delete
                       </button>

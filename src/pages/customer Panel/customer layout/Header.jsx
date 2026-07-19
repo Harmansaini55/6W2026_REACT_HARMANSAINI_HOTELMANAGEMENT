@@ -6,34 +6,34 @@ import DeleteService from "../../../services/DeleteService";
 
 export default function Header() {
   const navigate = useNavigate();
- 
- const handleLogout = async () => {
 
-  const confirmLogout = window.confirm(
-    "Are you sure you want to logout?"
-  );
+  const handleLogout = async () => {
+
+    const confirmLogout = window.confirm(
+      "Are you sure you want to logout?"
+    );
 
     if (!confirmLogout) return;
 
-  try {
+    try {
 
-    await DeleteService.deleteAllData();
+      await DeleteService.deleteAllData();
 
-    await UserService.logout();
+      await UserService.logout();
 
-    toast.success("Logout Successfully");
+      toast.success("Logout Successfully");
 
-    navigate("/", { replace: true });
+      navigate("/", { replace: true });
 
-  }
-  catch (error) {
+    }
+    catch (error) {
 
-    alert(error.message);
+      alert(error.message);
 
-  }
+    }
 
 
-};
+  };
 
 
 
@@ -58,14 +58,14 @@ export default function Header() {
 
           <ul className="navbar-nav ms-auto">
 
-            <li className="nav-item">
+            <li className="nav-item d-flex align-items-center">
               <Link className="nav-link" to="/customer">
                 Dashboard
               </Link>
             </li>
 
             {/* Rooms */}
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown d-flex align-items-center">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -89,7 +89,7 @@ export default function Header() {
 
             {/* Bookings */}
 
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown d-flex align-items-center">
 
               <a
                 className="nav-link dropdown-toggle"
@@ -122,7 +122,7 @@ export default function Header() {
 
             {/* Payments */}
 
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown d-flex align-items-center">
 
               <a
                 className="nav-link dropdown-toggle"
@@ -147,7 +147,7 @@ export default function Header() {
 
             {/*  Services */}
 
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown d-flex align-items-center">
 
               <a
                 className="nav-link dropdown-toggle"
@@ -174,7 +174,7 @@ export default function Header() {
 
             {/* Offers */}
 
-            <li className="nav-item">
+            <li className="nav-item d-flex align-items-center">
               <Link className="nav-link" to="/customer/offers">
                 Offers
               </Link>
@@ -182,20 +182,32 @@ export default function Header() {
 
             {/* Feedback */}
 
-            <li className="nav-item">
+            <li className="nav-item d-flex align-items-center">
               <Link className="nav-link" to="/customer/feedback">
                 Feedback
               </Link>
             </li>
 
 
-            <li className="nav-item">
+            <li className="nav-item d-flex align-items-center">
               <button
                 className="btn btn-danger ms-2"
                 onClick={handleLogout}
               >
                 Logout
               </button>
+            </li>
+
+            {/* Profile */}
+
+            <li className="nav-item ms-3 d-flex align-items-center">
+              <Link
+                className="nav-link"
+                to="/customer/my-profile"
+                title="My Profile"
+              >
+                <i className="bi bi-person-circle fs-3"></i>
+              </Link>
             </li>
 
           </ul>
