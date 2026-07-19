@@ -35,6 +35,7 @@ class OfferService {
       offerData.offerName,
       offerData.offerType,
       offerData.discount,
+       offerData.roomType,
       offerData.validFrom,
       offerData.validTo,
       offerData.description,

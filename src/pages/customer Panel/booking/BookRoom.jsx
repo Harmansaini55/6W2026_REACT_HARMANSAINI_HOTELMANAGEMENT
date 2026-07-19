@@ -93,12 +93,16 @@ export default function BookRoom() {
         const alreadyBooked = existingBookings.find(
             (item) =>
                 item.roomId === id &&
-                item.status === "Booked"
+                item.customerName === bookingData.customerName &&
+                   item.email === bookingData.email &&
+                 item.mobile === bookingData.mobile &&
+                item.checkIn === bookingData.checkIn &&
+                item.checkOut === bookingData.checkOut
         );
 
         if (alreadyBooked) {
 
-            toast.error("This room is already booked.");
+            toast.error("Booking already exists!");
 
             return;
 
@@ -143,11 +147,13 @@ export default function BookRoom() {
             paymentStatus: "Paid"
 
         };
+        console.log("ADDING BOOKING NOW");
+        console.log(newBooking);
 
         await BookingService.addBooking(newBooking);
         console.log("Saving Customer...");
         await CustomerService.addCustomer({
-        
+
             name: bookingData.customerName,
 
             email: bookingData.email,
@@ -323,39 +329,42 @@ export default function BookRoom() {
                                     />
 
                                 </div>
-                                <div className="col-md-6">
-                                    <label>Gender</label>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Gender</label>
 
-                                    <select
-                                        className="form-control"
-                                        name="gender"
-                                        value={bookingData.gender}
-                                        onChange={handleChange}
-                                    >
+                                        <select
+                                            className="form-control"
+                                            name="gender"
+                                            value={bookingData.gender}
+                                            onChange={handleChange}
+                                        >
 
-                                        <option value="">Select Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                            <option value="" disabled hidden>Select Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
 
-                                    </select>
+                                        </select>
 
+                                    </div>
                                 </div>
 
+                                <div className="row">
+                                    <div className="col-md-6 mt-2 mb-3">
 
-                                <div className="col-md-6">
+                                        <label>City</label>
 
-                                    <label>City</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="city"
+                                            value={bookingData.city}
+                                            onChange={handleChange}
+                                            placeholder="Enter City"
+                                        />
 
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="city"
-                                        value={bookingData.city}
-                                        onChange={handleChange}
-                                    />
-
+                                    </div>
                                 </div>
-
                                 <div className="row">
 
                                     <div className="col-md-6 mb-3">

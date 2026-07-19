@@ -3,37 +3,37 @@ import OfferService from "../../../services/OfferService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 export default function Offers() {
-const navigate = useNavigate();
+    const navigate = useNavigate();
     const [offers, setOffers] = useState([]);
 
 
-  useEffect(()=>{
+    useEffect(() => {
 
-const loadOffers=async()=>{
+        const loadOffers = async () => {
 
- const data = await OfferService.getAllOffers();
+            const data = await OfferService.getAllOffers();
 
- setOffers(data);
+            setOffers(data);
 
-}
+        }
 
-loadOffers();
+        loadOffers();
 
-},[]);
+    }, []);
 
-  const handleApplyOffer = (offer) => {
+    const handleApplyOffer = (offer) => {
 
-  localStorage.setItem(
-    "selectedOffer",
-    JSON.stringify(offer)
-  );
+        localStorage.setItem(
+            "selectedOffer",
+            JSON.stringify(offer)
+        );
 
-  toast.success("Offer Applied Successfully");
+        toast.success("Offer Applied Successfully");
 
-  setTimeout(() => {
-    navigate("/customer/browse-rooms");
-  }, 1500);
-};
+        setTimeout(() => {
+            navigate("/customer/browse-rooms");
+        }, 1500);
+    };
     return (
 
         <div className="container py-5">
@@ -82,7 +82,10 @@ loadOffers();
                                             {offer.discount}% OFF
                                         </h4>
 
-
+                                        <p>
+                                            <b>Room Type :</b> {offer.roomType}
+                                        </p>
+                                        
                                         <p>
                                             {offer.description}
                                         </p>

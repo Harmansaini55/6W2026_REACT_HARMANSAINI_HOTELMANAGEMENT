@@ -1,37 +1,56 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RoomService from "../../../services/RoomService";
+import OfferService from "../../../services/OfferService";
 
 export default function BrowseRoomDetails() {
 
   const { id } = useParams();
-  
+
   const [room, setRoom] = useState(null);
-   useEffect(() => {
+  const [offers, setOffers] = useState([]);
 
-    loadRoom();
+ useEffect(() => {
 
-  }, []);
+  loadRoom();
 
-  const loadRoom = async () => {
+}, []);
 
-    try {
+const loadRoom = async () => {
 
-      const data = await RoomService.getRoomById(id);
+  try {
 
-      setRoom(data);
+    const data = await RoomService.getRoomById(id);
 
-    }
-    catch (error) {
+    setRoom(data);
 
-      alert(error.message);
+    loadOffers(data.roomType);
 
-    }
+  } catch (error) {
 
-  };
+    alert(error.message);
+
+  }
+
+};
+
+const loadOffers = async (roomType) => {
+
+  const data = await OfferService.getAllOffers();
+
+  setOffers(
+    data.filter(
+      (item) =>
+        item.status === "Active" &&
+        item.roomType === roomType
+    )
+  );
+
+};
+
   if (!room) {
 
-   
+
     return (
       <div className="container py-5 text-center">
         <h3 className="text-danger">Room Not Found</h3>
@@ -127,6 +146,51 @@ export default function BrowseRoomDetails() {
                 {room.hotelPolicy}
               </p>
 
+              <hr />
+
+              <h5 className="fw-bold">
+                Available Offers
+              </h5>
+
+              {
+                offers.length > 0 ? (
+
+                  offers.map((offer) => (
+
+                    <div key={offer.id} className="border rounded p-3 mb-3">
+
+                      <h6>{offer.offerName}</h6>
+
+                      <p>
+                        <b>Discount :</b> {offer.discount}%
+                      </p>
+
+                      <button
+                        className="btn btn-warning btn-sm"
+                        onClick={() => {
+
+                          localStorage.setItem(
+                            `selectedOffer_${room.id}`,
+                            JSON.stringify(offer)
+                          );
+
+                          alert("Offer Applied Successfully");
+
+                        }}
+                      >
+                        Apply Offer
+                      </button>
+
+                    </div>
+
+                  ))
+
+                ) : (
+
+                  <p>No Offers Available</p>
+
+                )
+              }
               <div className="mt-4">
 
                 {

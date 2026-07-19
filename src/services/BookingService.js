@@ -28,12 +28,14 @@ class BookingService {
 
   // Add New Booking
   async addBooking(booking) {
+       console.log("FIRESTORE ADD START");
 
+     
     const docRef = await addDoc(
       collection(db, dbPath),
       booking
     );
-
+       console.log("FIRESTORE ADD ID:", docRef.id);
     return docRef.id;
 
   }

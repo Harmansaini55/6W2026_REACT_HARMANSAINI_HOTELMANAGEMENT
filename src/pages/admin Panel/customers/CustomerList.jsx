@@ -196,13 +196,13 @@ export default function CustomerList() {
                       <tr>
 
                         <td
-                          colSpan="9"
+                          colSpan="10"
                           className="text-center text-danger fw-bold"
                         >
                           No Customer Found
                         </td>
 
-                               <td>{item.checkOutDate}</td>
+                        
 
                       </tr>
 

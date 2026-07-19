@@ -5,6 +5,7 @@ class OfferModel {
     offerName,
     offerType,
     discount,
+    roomType,
     validFrom,
     validTo,
     description,
@@ -15,6 +16,7 @@ class OfferModel {
     this.offerName = offerName;
     this.offerType = offerType;
     this.discount = discount;
+    this.roomType = roomType;
     this.validFrom = validFrom;
     this.validTo = validTo;
     this.description = description;

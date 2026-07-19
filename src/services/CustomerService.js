@@ -10,7 +10,7 @@ import {
 
 import { db } from "../firebase/FirebaseConfig";
 
-const dbPath = "bookings";
+const dbPath = "customers";
 
 class CustomerService {
 

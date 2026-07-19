@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import OfferService from "../../../services/OfferService";
 
@@ -7,40 +7,41 @@ export default function EditOffer() {
   const navigate = useNavigate();
   const { id } = useParams();
 
- const [offerData, setOfferData] = useState({
+  const [offerData, setOfferData] = useState({
 
-  id:"",
-  offerName:"",
-  offerType:"",
-  discount:"",
-  validFrom:"",
-  validTo:"",
-  description:"",
-  status:"Active",
+    id: "",
+    offerName: "",
+    offerType: "",
+    discount: "",
+    roomType: "",
+    validFrom: "",
+    validTo: "",
+    description: "",
+    status: "Active",
 
-});
-
-
-useEffect(()=>{
-
-  loadOffer();
-
-},[id]);
+  });
 
 
+  useEffect(() => {
 
-const loadOffer = async()=>{
+    loadOffer();
 
-  const data = await OfferService.getOfferById(id);
+  }, [id]);
 
 
-  if(data){
 
-    setOfferData(data);
+  const loadOffer = async () => {
 
-  }
+    const data = await OfferService.getOfferById(id);
 
-};
+
+    if (data) {
+
+      setOfferData(data);
+
+    }
+
+  };
 
   const handleChange = (e) => {
 
@@ -53,26 +54,26 @@ const loadOffer = async()=>{
 
   };
 
- const handleUpdate = async (e) => {
+  const handleUpdate = async (e) => {
 
-  e.preventDefault();
-
-
-  await OfferService.updateOffer(offerData);
+    e.preventDefault();
 
 
-  alert("Offer Updated Successfully");
+    await OfferService.updateOffer(offerData);
 
 
-  navigate("/admin/offer-list");
+    alert("Offer Updated Successfully");
 
-};
+
+    navigate("/admin/offer-list");
+
+  };
 
   const handleReset = () => {
 
-  loadOffer();
+    loadOffer();
 
-};
+  };
 
 
   return (
@@ -123,14 +124,31 @@ const loadOffer = async()=>{
                   <option>Weekend</option>
                   <option>Festival</option>
                   <option>Couple</option>
-                  <option>Booking</option> 
+                  <option>Booking</option>
                   <option>Corporate</option>
-                   <option>Family</option>
-                    <option>Holiday</option>
+                  <option>Family</option>
+                  <option>Holiday</option>
                 </select>
 
               </div>
 
+              <div className="col-md-6 mb-3">
+                <label>Room Type</label>
+
+                <select
+                  className="form-select"
+                  name="roomType"
+                  value={offerData.roomType}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled hidden>Select Room Type</option>
+                  <option>Double Room</option>
+                  <option>Single Room</option>
+                  <option>Family Room</option>
+                  <option>Twin Room</option>
+                  <option>Suite Room</option>
+                </select>
+              </div>
               <div className="col-md-6 mb-3">
                 <label>Discount</label>
 

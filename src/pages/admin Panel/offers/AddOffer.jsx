@@ -10,6 +10,7 @@ export default function AddOffer() {
   const [offerData, setOfferData] = useState({
     offerName: "",
     offerType: "",
+    roomType: "",
     discount: "",
     validFrom: "",
     validTo: "",
@@ -28,32 +29,33 @@ export default function AddOffer() {
 
   };
 
- const handleSave = async (e) => {
+  const handleSave = async (e) => {
 
-  e.preventDefault();
-
-
-  const newOffer = new OfferModel(
-    "",
-    offerData.offerName,
-    offerData.offerType,
-    offerData.discount,
-    offerData.validFrom,
-    offerData.validTo,
-    offerData.description,
-    offerData.status
-  );
+    e.preventDefault();
 
 
-  await OfferService.addOffer(newOffer);
+    const newOffer = new OfferModel(
+      "",
+      offerData.offerName,
+      offerData.offerType,
+      offerData.discount,
+      offerData.roomType,
+      offerData.validFrom,
+      offerData.validTo,
+      offerData.description,
+      offerData.status
+    );
 
 
-  alert("Offer Added Successfully");
+    await OfferService.addOffer(newOffer);
 
 
-  navigate("/admin/offer-list");
+    alert("Offer Added Successfully");
 
-};
+
+    navigate("/admin/offer-list");
+
+  };
 
 
   const handleReset = () => {
@@ -66,6 +68,7 @@ export default function AddOffer() {
       validTo: "",
       description: "",
       status: "Active",
+      roomType: "",
     });
 
   };
@@ -120,14 +123,32 @@ export default function AddOffer() {
                   <option>Weekend</option>
                   <option>Festival</option>
                   <option>Couple</option>
-                  <option>Booking</option> 
+                  <option>Booking</option>
                   <option>Corporate</option>
-                   <option>Family</option>
-                    <option>Holiday</option>
+                  <option>Family</option>
+                  <option>Holiday</option>
 
 
                 </select>
 
+              </div>
+
+              <div className="col-md-6 mb-3">
+                <label>Room Type</label>
+
+                <select
+                  className="form-select"
+                  name="roomType"
+                  value={offerData.roomType}
+                  onChange={handleChange}
+                >
+                  <option value="" disabled hidden>Select Room Type</option>
+                  <option>Double Room</option>
+                  <option>Single Room</option>
+                  <option>Family Room</option>
+                  <option>Twin Room</option>
+                  <option>Suite Room</option>
+                </select>
               </div>
 
               <div className="col-md-6 mb-3">
