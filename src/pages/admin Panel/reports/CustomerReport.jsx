@@ -54,12 +54,12 @@ const loadCustomers = async () => {
               {
                 customerList.length > 0 ? (
 
-                  customerList.map((customer) => (
+                  customerList.map((customer,index) => (
 
                     <tr key={customer.id}>
 
-                      <td>{customer.id}</td>
-                      <td>{customer.fullName}</td>
+                      <td>{index + 1}</td>
+                      <td>{customer.name}</td>
                       <td>{customer.email}</td>
                       <td>{customer.mobile}</td>
                       <td>{customer.gender}</td>

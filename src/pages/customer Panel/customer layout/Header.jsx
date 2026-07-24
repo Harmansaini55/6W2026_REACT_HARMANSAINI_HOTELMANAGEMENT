@@ -42,7 +42,7 @@ export default function Header() {
       <div className="container-fluid">
 
         <Link className="navbar-brand fw-bold" to="/customer">
-          🏨 Hotel Booking
+          🏨 Royal Stay Hotel
         </Link>
 
         <button
@@ -65,24 +65,14 @@ export default function Header() {
             </li>
 
             {/* Rooms */}
-            <li className="nav-item dropdown d-flex align-items-center">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+            <li className="nav-item  d-flex align-items-center">
+              
+              <Link className="nav-link" to="/customer/browse-rooms">
                 Rooms
-              </a>
+              </Link>
+          
 
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" to="/customer/browse-rooms">
-                    Browse Rooms
-                  </Link>
-                </li>
-
-              </ul>
+             
             </li>
 
 
@@ -122,51 +112,23 @@ export default function Header() {
 
             {/* Payments */}
 
-            <li className="nav-item dropdown d-flex align-items-center">
+            <li className="nav-item  d-flex align-items-center">
 
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+              <Link className="nav-link" to="/customer/payment-history">
                 Payments
-              </a>
+              </Link>
 
-              <ul className="dropdown-menu">
-
-                <li>
-                  <Link className="dropdown-item" to="/customer/payment-history">
-                    Payment History
-                  </Link>
-                </li>
-
-              </ul>
 
             </li>
 
             {/*  Services */}
 
-            <li className="nav-item dropdown d-flex align-items-center">
+            <li className="nav-item  d-flex align-items-center">
 
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+             <Link className="nav-link" to="/customer/request-hotel-services">
                 Services
-              </a>
-
-              <ul className="dropdown-menu">
-
-                <li>
-                  <Link className="dropdown-item" to="/customer/request-hotel-services">
-                    Request Hotel Services
-                  </Link>
-                </li>
-
-              </ul>
+              </Link>
+              
 
             </li>
 

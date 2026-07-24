@@ -35,7 +35,7 @@ export default function Header() {
       <div className="container-fluid">
 
         <Link className="navbar-brand fw-bold" to="/admin/dashboard">
-          🏨 Hotel Booking
+          🏨 Royal Stay Hotel
         </Link>
 
         <button
@@ -58,47 +58,23 @@ export default function Header() {
             </li>
 
             {/* Rooms */}
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+            <li className="nav-item">
+             
+           <Link className="nav-link" to="/admin/room">
                 Rooms
-              </a>
-
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" to="/admin/room">
-                    Room List
-                  </Link>
-                </li>
-
-
-              </ul>
+              </Link>
+             
             </li>
 
             {/* Customers */}
 
-            <li className="nav-item dropdown">
+            <li className="nav-item">
 
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+               <Link className="nav-link" to="/admin/customer-list">
                 Customers
-              </a>
+              </Link>
 
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" to="/admin/customer-list">
-                    Customers-List
-                  </Link>
-                </li>
-              </ul>
+           
 
             </li>
 
@@ -136,101 +112,53 @@ export default function Header() {
 
             {/* Payments */}
 
-            <li className="nav-item dropdown">
+            <li className="nav-item">
 
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+               <Link className="nav-link" to="/admin/payments">
                 Payments
-              </a>
+              </Link>
 
-              <ul className="dropdown-menu">
-
-                <li>
-                  <Link className="dropdown-item" to="/admin/payments">
-                    Payment-List
-                  </Link>
-                </li>
-
-              </ul>
+             
 
             </li>
 
             {/* Hotel Services */}
 
-            <li className="nav-item dropdown">
+            <li className="nav-item ">
 
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+             
+               <Link className="nav-link" to="/admin/services">
                 Hotel Services
-              </a>
+              </Link>
 
-              <ul className="dropdown-menu">
-
-                <li>
-                  <Link className="dropdown-item" to="/admin/services">
-                    Hotel Services List
-                  </Link>
-                </li>
-
-              </ul>
 
             </li>
 
             {/* Staff */}
 
-            <li className="nav-item dropdown">
+            <li className="nav-item">
 
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+             
+               <Link className="nav-link" to="/admin/staff-list">
                 Staff
-              </a>
+              </Link>
 
-              <ul className="dropdown-menu">
 
-                <li>
-                  <Link className="dropdown-item" to="/admin/staff-list">
-                    Staff-List
-                  </Link>
-                </li>
-
-              </ul>
+         
 
             </li>
 
             {/* Offers */}
 
-            <li className="nav-item dropdown">
+            <li className="nav-item ">
 
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+             
+               <Link className="nav-link" to="/admin/offer-list">
                 Offers
-              </a>
+              </Link>
 
-              <ul className="dropdown-menu">
 
-                <li>
-                  <Link className="dropdown-item" to="/admin/offer-list">
-                    Offers List
-                  </Link>
-                </li>
-
-              </ul>
+              
 
             </li>
 

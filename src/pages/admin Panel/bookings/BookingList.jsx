@@ -72,16 +72,7 @@ export default function BookingList() {
 
         <div className="card-body">
 
-          {/* Search */}
-          <div className="row mb-3">
-            <div className="col-md-4">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search Booking..."
-              />
-            </div>
-          </div>
+        
 
           {/* Table */}
 
@@ -92,8 +83,7 @@ export default function BookingList() {
               <thead className="table-dark">
 
                 <tr>
-                  <th>#</th>
-                  <th>Booking ID</th>
+                  <th>ID</th>
                   <th>Customer Name</th>
                   <th>Room</th>
                   <th>Check In</th>
@@ -112,7 +102,7 @@ export default function BookingList() {
                   <tr key={booking.id}>
                     <td>{index + 1}</td>
 
-                    <td>{booking.bookingId}</td>
+                  
 
                     <td>{booking.customerName}</td>
 

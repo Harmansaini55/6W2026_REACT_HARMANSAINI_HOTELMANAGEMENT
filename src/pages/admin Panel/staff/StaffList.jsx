@@ -82,11 +82,12 @@ export default function StaffList() {
 
               {
 
-                staffList.map((staff) => (
+                staffList.map((staff,index) => (
 
                   <tr key={staff.id}>
+                    <td>{index + 1}</td>  
 
-                    <td>{staff.id}</td>
+                   
 
                     <td>
                       <img
@@ -100,7 +101,7 @@ export default function StaffList() {
                         }}
                       />
                     </td>
-
+                     
                     <td>{staff.name}</td>
 
                     <td>{staff.department}</td>

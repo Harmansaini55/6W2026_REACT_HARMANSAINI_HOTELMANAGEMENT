@@ -68,21 +68,6 @@ export default function ServiceList() {
 
         <div className="card-body">
 
-          <div className="row mb-3">
-
-            <div className="col-md-4">
-
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search Service..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-
-            </div>
-
-          </div>
 
           <div className="table-responsive">
 

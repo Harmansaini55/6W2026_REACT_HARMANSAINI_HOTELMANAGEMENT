@@ -85,11 +85,12 @@ const loadOffers = async () => {
               {
                 offerList.length > 0 ? (
 
-                  offerList.map((offer) => (
+                  offerList.map((offer,index) => (
 
                     <tr key={offer.id}>
-
-                      <td>{offer.id}</td>
+                     
+                      
+                       <td>{index + 1}</td>
                       <td>{offer.offerName}</td>
                       <td>{offer.offerType}</td>
                       <td>{offer.discount}</td>

@@ -39,8 +39,8 @@ const loadPayments = async () => {
             <thead className="table-dark">
 
               <tr>
-                <th>Payment ID</th>
-                <th>Booking ID</th>
+                <th> ID</th>
+               
                 <th>Customer Name</th>
                 <th>Mobile</th>
                 <th>Room No.</th>
@@ -58,12 +58,11 @@ const loadPayments = async () => {
 
                 paymentList.length > 0 ? (
 
-                  paymentList.map((payment) => (
+                  paymentList.map((payment,index) => (
 
                     <tr key={payment.id}>
 
-                      <td>{payment.paymentId}</td>
-                      <td>{payment.bookingId}</td>
+                      <td>{index + 1}</td>
                       <td>{payment.customerName}</td>
                       <td>{payment.mobile}</td>
                       <td>{payment.roomNumber}</td>

@@ -57,7 +57,7 @@ const loadPayments = async () => {
 
             <th>ID</th>
 
-            <th>Payment ID</th>
+           
 
             <th>Customer Name</th>
 
@@ -87,7 +87,7 @@ const loadPayments = async () => {
 
                 <td>{index + 1}</td>
 
-                <td>{payment.paymentId}</td>
+               
 
                 <td>{payment.customerName}</td>
 

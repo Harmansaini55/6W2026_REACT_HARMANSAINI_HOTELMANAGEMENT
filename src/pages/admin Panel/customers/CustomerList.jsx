@@ -128,7 +128,7 @@ export default function CustomerList() {
 
                           </td>
 
-                          <td>{customer.customerName}</td>
+                          <td>{customer.name}</td>
 
                           <td>{customer.roomNumber}</td>
 

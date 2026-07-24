@@ -10,7 +10,7 @@ export default function Footer (){
         <div className="col-12 col-lg-5">
           <div className="footer-widget-area mt-50">
             <a href="#" className="d-block mb-5">
-              <img src="img/core-img/logo.png" alt="" />
+             <h className="text-white fs-5">Royal Stay Hotel</h>
             </a>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec

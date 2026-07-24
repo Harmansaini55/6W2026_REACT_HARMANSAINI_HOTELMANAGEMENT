@@ -21,7 +21,7 @@ export default function CustomerDetails() {
   const getCustomer = async () => {
 
     const data = await CustomerService.getCustomerById(id);
-       console.log(data);
+    console.log(data);
     setCustomer(data);
 
   };
@@ -64,7 +64,11 @@ export default function CustomerDetails() {
           {customer.image && (
             <div className="text-center mb-4">
               <img
-                src={customer.image}
+                src={
+                  customer.profileImage
+                    ? customer.profileImage
+                    : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                }
                 alt="Customer"
                 className="rounded-circle shadow"
                 width="180"
@@ -79,7 +83,7 @@ export default function CustomerDetails() {
 
               <tr>
                 <th width="30%">Full Name</th>
-                <td>{customer.customerName}</td>
+                <td>{customer.name}</td>
               </tr>
 
               <tr>

@@ -1,26 +1,26 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import BookingService from "../../../services/BookingService";
 
 export default function BookingReport() {
 
- const [bookingList, setBookingList] = useState([]);
+  const [bookingList, setBookingList] = useState([]);
 
 
-useEffect(() => {
+  useEffect(() => {
 
-  loadBookings();
+    loadBookings();
 
-}, []);
+  }, []);
 
 
 
-const loadBookings = async () => {
+  const loadBookings = async () => {
 
-  const data = await BookingService.getAllBookings();
+    const data = await BookingService.getAllBookings();
 
-  setBookingList(data);
+    setBookingList(data);
 
-};
+  };
 
   return (
 
@@ -39,7 +39,7 @@ const loadBookings = async () => {
             <thead className="table-dark">
 
               <tr>
-                <th>Booking ID</th>
+                <th> ID</th>
                 <th>Customer Name</th>
                 <th>Mobile</th>
                 <th>Room No.</th>
@@ -59,45 +59,31 @@ const loadBookings = async () => {
               {
                 bookingList.length > 0 ? (
 
-                  bookingList.map((booking) => (
+                  bookingList.map((booking, index) => (
 
                     <tr key={booking.id}>
 
-                      <td>{booking.id}</td>
+                      <td>{index + 1}</td>
                       <td>{booking.customerName}</td>
                       <td>{booking.mobile}</td>
                       <td>{booking.roomNumber}</td>
                       <td>{booking.roomType}</td>
 
+                      <td>{booking.checkIn}</td>
+
+                      <td>{booking.checkOut}</td>
+
                       <td>
-                        {booking.checkInDate}
-                        <br />
-                        <small>{booking.checkInTime}</small>
+                        {Number(booking.adults) + Number(booking.children)}
                       </td>
 
-                      <td>
-                        {booking.checkOutDate}
-                        <br />
-                        <small>{booking.checkOutTime}</small>
-                      </td>
+                      <td  className="text-center align-middle">
+                        ₹ {booking.price}</td>
+                      <span className="badge bg-success mt-4 ml-4">
+                        {booking.paymentMethod}
+                      </span>
 
-                      <td>{booking.guests}</td>
-
-                      <td>₹ {booking.totalAmount}</td>
-
-                      <td>
-                        <span
-                          className={
-                            booking.paymentStatus === "Paid"
-                              ? "badge bg-success"
-                              : "badge bg-warning"
-                          }
-                        >
-                          {booking.paymentStatus}
-                        </span>
-                      </td>
-
-                      <td>
+                      <td className="text-center align-middle">
                         <span
                           className={
                             booking.status === "Booked"

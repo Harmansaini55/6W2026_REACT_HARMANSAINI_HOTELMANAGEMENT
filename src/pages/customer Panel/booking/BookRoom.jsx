@@ -7,6 +7,7 @@ import PaymentService from "../../../services/PaymentService";
 import { db } from "../../../firebase/FirebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import CustomerService from "../../../services/CustomerService";
+import AuthService from "../../../services/AuthService";
 export default function BookRoom() {
 
     const navigate = useNavigate();
@@ -75,6 +76,13 @@ export default function BookRoom() {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
+        const totalGuests =
+    Number(bookingData.adults) + Number(bookingData.children);
+
+if (totalGuests > Number(room.capacity)) {
+    toast.error(`Maximum ${room.capacity} guests are allowed.`);
+    return;
+}
         console.log("Booking Saved");
         if (
             !bookingData.customerName ||
@@ -94,8 +102,8 @@ export default function BookRoom() {
             (item) =>
                 item.roomId === id &&
                 item.customerName === bookingData.customerName &&
-                   item.email === bookingData.email &&
-                 item.mobile === bookingData.mobile &&
+                item.email === bookingData.email &&
+                item.mobile === bookingData.mobile &&
                 item.checkIn === bookingData.checkIn &&
                 item.checkOut === bookingData.checkOut
         );
@@ -133,7 +141,7 @@ export default function BookRoom() {
             bookingId: newBooking.bookingId,
 
             customerName: bookingData.customerName,
-
+            mobile: bookingData.mobile,
             roomNumber: room.roomNumber,
 
             roomType: room.roomType,
@@ -152,8 +160,9 @@ export default function BookRoom() {
 
         await BookingService.addBooking(newBooking);
         console.log("Saving Customer...");
+        const currentUser = await AuthService.getData();
         await CustomerService.addCustomer({
-
+            profileImage: currentUser?.profileImage || "",
             name: bookingData.customerName,
 
             email: bookingData.email,
@@ -181,6 +190,7 @@ export default function BookRoom() {
             paymentMethod: bookingData.paymentMethod,
 
             specialRequest: bookingData.specialRequest
+
 
         });
         console.log("Customer Saved");
@@ -405,30 +415,40 @@ export default function BookRoom() {
 
                                         <label>Adults</label>
 
-                                        <input
-                                            type="number"
+                                        <select
                                             name="adults"
-                                            min="1"
-                                            className="form-control"
+                                            className="form-select"
                                             value={bookingData.adults}
                                             onChange={handleChange}
-                                        />
+                                        >
+                                            <option value="">Select Adults</option>
+
+                                            {[...Array(Number(room.capacity))].map((_, index) => (
+                                                <option key={index + 1} value={index + 1}>
+                                                    {index + 1}
+                                                </option>
+                                            ))}
+                                        </select>
 
                                     </div>
 
                                     <div className="col-md-6 mb-3">
 
                                         <label>Children</label>
-
-                                        <input
-                                            type="number"
+                                        <select
                                             name="children"
-                                            min="0"
-                                            className="form-control"
+                                            className="form-select"
                                             value={bookingData.children}
                                             onChange={handleChange}
-                                        />
+                                        >
+                                            <option value="0" disabled hidden>0</option>
 
+                                            {[...Array(Number(room.capacity))].map((_, index) => (
+                                                <option key={index + 1} value={index + 1}>
+                                                    {index + 1}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </div>
 
                                 </div>
